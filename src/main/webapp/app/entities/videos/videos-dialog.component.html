@@ -1,0 +1,113 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myVideosLabel" jhiTranslate="convertXApp.videos.home.createOrEditLabel">Create or edit a Videos</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!videos.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="videos.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="convertXApp.videos.nomePasta" for="field_nomePasta">Nome Pasta</label>
+            <input type="text" class="form-control" name="nomePasta" id="field_nomePasta"
+                [(ngModel)]="videos.nomePasta" required maxlength="255"/>
+            <div [hidden]="!(editForm.controls.nomePasta?.dirty && editForm.controls.nomePasta?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nomePasta?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nomePasta?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="convertXApp.videos.titulo" for="field_titulo">Titulo</label>
+            <input type="text" class="form-control" name="titulo" id="field_titulo"
+                [(ngModel)]="videos.titulo" maxlength="255"/>
+            <div [hidden]="!(editForm.controls.titulo?.dirty && editForm.controls.titulo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.titulo?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="convertXApp.videos.nomeArquivo" for="field_nomeArquivo">Nome Arquivo</label>
+            <input type="text" class="form-control" name="nomeArquivo" id="field_nomeArquivo"
+                [(ngModel)]="videos.nomeArquivo" required maxlength="255"/>
+            <div [hidden]="!(editForm.controls.nomeArquivo?.dirty && editForm.controls.nomeArquivo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nomeArquivo?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nomeArquivo?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="convertXApp.videos.extensaoArquivo" for="field_extensaoArquivo">Extensao Arquivo</label>
+            <input type="text" class="form-control" name="extensaoArquivo" id="field_extensaoArquivo"
+                [(ngModel)]="videos.extensaoArquivo" required maxlength="4"/>
+            <div [hidden]="!(editForm.controls.extensaoArquivo?.dirty && editForm.controls.extensaoArquivo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.extensaoArquivo?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.extensaoArquivo?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 4 }">
+                   This field cannot be longer than 4 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="convertXApp.videos.dataEnviado" for="field_dataEnviado">Data Enviado</label>
+            <div class="d-flex">
+                <input id="field_dataEnviado" type="datetime-local" class="form-control" name="dataEnviado" [(ngModel)]="videos.dataEnviado"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.dataEnviado?.dirty && editForm.controls.dataEnviado?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dataEnviado?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.dataEnviado?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="convertXApp.videos.visualizacoes" for="field_visualizacoes">Visualizacoes</label>
+            <input type="number" class="form-control" name="visualizacoes" id="field_visualizacoes"
+                [(ngModel)]="videos.visualizacoes" required/>
+            <div [hidden]="!(editForm.controls.visualizacoes?.dirty && editForm.controls.visualizacoes?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.visualizacoes?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.visualizacoes?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

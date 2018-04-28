@@ -1,0 +1,27 @@
+
+{
+    "convertXApp": {
+        "videos" : {
+            "home": {
+                "title": "Videos",
+                "createLabel": "Criar novo Videos",
+                "createOrEditLabel": "Criar ou editar Videos"
+            },
+            "created": "Um novo Videos foi criado com o identificador {{ param }}",
+            "updated": "Um Videos foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Videos foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Videos {{ id }}?"
+            },
+            "detail": {
+                "title": "Videos"
+            },
+            "nomePasta": "Nome Pasta",
+            "titulo": "Titulo",
+            "nomeArquivo": "Nome Arquivo",
+            "extensaoArquivo": "Extensao Arquivo",
+            "dataEnviado": "Data Enviado",
+            "visualizacoes": "Visualizacoes"
+        }
+    }
+}

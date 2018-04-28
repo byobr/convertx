@@ -32,9 +32,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:sqlserver://localhost:1433;database=convertX
-        username: SA
-        password: yourStrong(!)Password
+        url: jdbc:sqlserver://18.219.206.223\SQLEXPRESS:1433;database=convertX
+        username: convertx
+        password: '!@#qweasd'
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -42,7 +42,7 @@ spring:
                 prepStmtCacheSqlLimit: 2048
                 useServerPrepStmts: true
     jpa:
-        database-platform: org.hibernate.dialect.SQLServer2012Dialect
+        database-platform: org.hibernate.dialect.SQLServer2008Dialect
         database: SQL_SERVER
         show-sql: true
         properties:

@@ -1,0 +1,46 @@
+
+<div *ngIf="videos">
+    <h2><span jhiTranslate="convertXApp.videos.detail.title">Videos</span> {{videos.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="convertXApp.videos.nomePasta">Nome Pasta</span></dt>
+        <dd>
+            <span>{{videos.nomePasta}}</span>
+        </dd>
+        <dt><span jhiTranslate="convertXApp.videos.titulo">Titulo</span></dt>
+        <dd>
+            <span>{{videos.titulo}}</span>
+        </dd>
+        <dt><span jhiTranslate="convertXApp.videos.nomeArquivo">Nome Arquivo</span></dt>
+        <dd>
+            <span>{{videos.nomeArquivo}}</span>
+        </dd>
+        <dt><span jhiTranslate="convertXApp.videos.extensaoArquivo">Extensao Arquivo</span></dt>
+        <dd>
+            <span>{{videos.extensaoArquivo}}</span>
+        </dd>
+        <dt><span jhiTranslate="convertXApp.videos.dataEnviado">Data Enviado</span></dt>
+        <dd>
+            <span>{{videos.dataEnviado | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="convertXApp.videos.visualizacoes">Visualizacoes</span></dt>
+        <dd>
+            <span>{{videos.visualizacoes}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'videos/'+ videos.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
