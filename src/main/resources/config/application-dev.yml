@@ -30,6 +30,10 @@ spring:
             enabled: false # we use gulp + BrowserSync for livereload
     jackson:
         serialization.indent_output: true
+    http:
+        multipart:
+             maxFileSize: 150Mb
+             maxRequestSize: 150Mb
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:sqlserver://18.219.206.223\SQLEXPRESS:1433;database=convertX
@@ -42,7 +46,7 @@ spring:
                 prepStmtCacheSqlLimit: 2048
                 useServerPrepStmts: true
     jpa:
-        database-platform: org.hibernate.dialect.SQLServer2008Dialect
+        database-platform: org.hibernate.dialect.SQLServer2012Dialect
         database: SQL_SERVER
         show-sql: true
         properties:
@@ -50,11 +54,12 @@ spring:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
+            hibernate.default_schema: dbo
     mail:
         host: localhost
         port: 25
-        username:
-        password:
+        username: 'site@convertx.com'
+        password: '001011'
     messages:
         cache-seconds: 1
     thymeleaf:

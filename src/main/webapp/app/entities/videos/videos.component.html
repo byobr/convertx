@@ -1,12 +1,6 @@
 <div>
     <h2>
         <span jhiTranslate="convertXApp.videos.home.title">Videos</span>
-        <button class="btn btn-primary float-right jh-create-entity create-videos" [routerLink]="['/', { outlets: { popup: ['videos-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span  jhiTranslate="convertXApp.videos.home.createLabel">
-            Create new Videos
-            </span>
-        </button>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -18,39 +12,38 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nomePasta"><span jhiTranslate="convertXApp.videos.nomePasta">Nome Pasta</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="titulo"><span jhiTranslate="convertXApp.videos.titulo">Titulo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nomeArquivo"><span jhiTranslate="convertXApp.videos.nomeArquivo">Nome Arquivo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="extensaoArquivo"><span jhiTranslate="convertXApp.videos.extensaoArquivo">Extensao Arquivo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="dataEnviado"><span jhiTranslate="convertXApp.videos.dataEnviado">Data Enviado</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="visualizacoes"><span jhiTranslate="convertXApp.videos.visualizacoes">Visualizacoes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="visualizacoes"><span>Status</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let videos of videos ;trackBy: trackId">
-                <td><a [routerLink]="['../videos', videos.id ]">{{videos.id}}</a></td>
+                <td *ngIf="videos.status != 'Finalizado'">{{videos.id}}</td>
+                <td *ngIf="videos.status == 'Finalizado'"><a [routerLink]="['../videos', videos.id ]">{{videos.id}}</a></td>
                 <td>{{videos.nomePasta}}</td>
-                <td>{{videos.titulo}}</td>
                 <td>{{videos.nomeArquivo}}</td>
                 <td>{{videos.extensaoArquivo}}</td>
                 <td>{{videos.dataEnviado | date:'medium'}}</td>
-                <td>{{videos.visualizacoes}}</td>
+                <td>{{videos.status}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <button *ngIf="videos.status == 'Finalizado'" type="submit"
                                 [routerLink]="['../videos', videos.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <!--<button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'videos/'+ videos.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
+                        </button>-->
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'videos/'+ videos.id + '/delete'} }]"
                                 replaceUrl="true"

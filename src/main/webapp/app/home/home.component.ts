@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { SERVER_API_URL } from '../app.constants';
 
 import { Account, LoginModalService, Principal } from '../shared';
 
@@ -14,12 +16,15 @@ import { Account, LoginModalService, Principal } from '../shared';
 })
 export class HomeComponent implements OnInit {
     account: Account;
+    arquivo: any;
     modalRef: NgbModalRef;
+    private resourceUrl =  SERVER_API_URL + 'api/videos';
 
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private http: HttpClient
     ) {
     }
 
@@ -44,5 +49,20 @@ export class HomeComponent implements OnInit {
 
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+
+    onSubmit() {
+        console.log('aff');
+        let formdata: FormData = new FormData();
+        formdata.append('file', this.arquivo);
+        formdata.append('user', this.account.login);
+        this.http.post(this.resourceUrl + '/adicionar', formdata).subscribe(s => 
+            this.enviouVideo()
+        );
+    }
+
+    enviouVideo() {
+        alert('Vídeo enviado com sucesso!');
+        this.arquivo = null;
     }
 }

@@ -51,6 +51,7 @@ currentAccount: any;
         this.videosService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
+            user: this.currentAccount.login,
             sort: this.sort()}).subscribe(
                 (res: HttpResponse<Videos[]>) => this.onSuccess(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
@@ -82,9 +83,10 @@ currentAccount: any;
         this.loadAll();
     }
     ngOnInit() {
-        this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
+            console.log('conta: ', account);
+            this.loadAll();
         });
         this.registerChangeInVideos();
     }

@@ -12,13 +12,13 @@ import java.util.Objects;
  * A Videos.
  */
 @Entity
-@Table(name = "videos")
+@Table(name = "videos", schema = "dbo")
 public class Videos implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
@@ -48,6 +48,24 @@ public class Videos implements Serializable {
     @NotNull
     @Column(name = "visualizacoes", nullable = false)
     private Long visualizacoes;
+    
+    @NotNull
+    @Column(name = "chave", nullable = false)
+    private String chave;
+    
+    @NotNull
+    @Column(name = "usuario", nullable = false)
+    private Long usuario;
+    
+    @NotNull
+    @Column(name = "status", nullable = false)
+    private String status;
+    
+    @Column(name = "id_encoder", nullable = true)
+    private Long idEncoder;
+    
+    @Column(name = "nome_pasta_convertido", nullable = true)
+    private String nomePastaConvertido;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -135,6 +153,72 @@ public class Videos implements Serializable {
     public void setVisualizacoes(Long visualizacoes) {
         this.visualizacoes = visualizacoes;
     }
+    
+    public Long getUsuario() {
+        return usuario;
+    }
+
+    public Videos usuario(Long usuario) {
+        this.usuario = usuario;
+        return this;
+    }
+
+    public void setUsuario(Long usuario) {
+        this.usuario = usuario;
+    }
+    
+    public String getChave() {
+        return chave;
+    }
+
+    public Videos chave(String chave) {
+        this.chave = chave;
+        return this;
+    }
+
+    public void setChave(String chave) {
+        this.chave = chave;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public Videos status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public Long getIdEnvoder() {
+        return idEncoder;
+    }
+
+    public Videos idEncoder(Long id_encoder) {
+        this.idEncoder = id_encoder;
+        return this;
+    }
+
+    public void setIdEncoder(Long id_encoder) {
+        this.idEncoder = id_encoder;
+    }
+    
+    public String getNomePastaConvertido() {
+        return nomePastaConvertido;
+    }
+
+    public Videos nomePastaConvertida(String nome_pasta_convertido) {
+        this.nomePastaConvertido = nome_pasta_convertido;
+        return this;
+    }
+
+    public void setNomePastaConvertido(String nome_pasta_convertido) {
+        this.nomePastaConvertido = nome_pasta_convertido;
+    }
+    
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

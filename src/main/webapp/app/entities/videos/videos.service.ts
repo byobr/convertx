@@ -36,6 +36,7 @@ export class VideosService {
 
     query(req?: any): Observable<HttpResponse<Videos[]>> {
         const options = createRequestOption(req);
+        console.log('asdasd: ', options);
         return this.http.get<Videos[]>(this.resourceUrl, { params: options, observe: 'response' })
             .map((res: HttpResponse<Videos[]>) => this.convertArrayResponse(res));
     }

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * An authority (a security role) used by Spring Security.
  */
 @Entity
-@Table(name = "jhi_authority")
+@Table(name = "jhi_authority", schema = "dbo")
 
 public class Authority implements Serializable {
 
